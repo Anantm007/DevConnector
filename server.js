@@ -7,6 +7,8 @@ const app = express();
 // Connect Database
 connectDB();
 
+// Init Middleware
+app.use(express.json({extended: false})); //  Alternative to body parser
 
 // GET request to the home route
 app.get('/', function(req, res)
