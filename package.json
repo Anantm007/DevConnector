@@ -4,7 +4,11 @@
   "description": "A social network for developers",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server",
+   "server": "nodemon server",
+   "client": "npm start --prefix client",
+   "dev": "concurrently \"npm run server\" \"npm run client\"",
+   "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Anant Mathur",
   "license": "MIT",
