@@ -82,5 +82,4 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, 
-  {setAlert, register})
-  (Register);
+  {setAlert, register})(Register);
