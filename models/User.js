@@ -1,28 +1,22 @@
-//jshint esversion: 6
+const mongoose = require('mongoose');
 
-const mongoose = require("mongoose");
-
-const UserSchema = new mongoose.Schema ({
+const UserSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
   },
-
   email: {
-      type: String,
-      required: true,
-      unique: true
+    type: String,
+    required: true,
+    unique: true
   },
-
   password: {
     type: String,
     required: true
   },
-
   avatar: {
     type: String
   },
-
   date: {
     type: Date,
     default: Date.now

@@ -1,30 +1,27 @@
-import React, { useEffect, useState, Fragment } from "react";
-import { Link, withRouter, Redirect } from "react-router-dom";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { createProfile, getCurrentProfile } from "../../actions/profile";
+import React, { Fragment, useState } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createProfile } from '../../actions/profile';
 
-const Createprofile = ({
-  createProfile,
-  getCurrentProfile,
-  profile: { profile, loading },
-  history,
-}) => {
+const CreateProfile = ({ createProfile, history }) => {
   const [formData, setFormData] = useState({
-    company: "",
-    website: "",
-    location: "",
-    status: "",
-    skills: "",
-    githubusername: "",
-    bio: "",
-    twitter: "",
-    facebook: "",
-    linkedin: "",
-    youtube: "",
-    instagram: "",
+    company: '',
+    website: '',
+    location: '',
+    status: '',
+    skills: '',
+    githubusername: '',
+    bio: '',
+    twitter: '',
+    facebook: '',
+    linkedin: '',
+    youtube: '',
+    instagram: ''
   });
+
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
+
   const {
     company,
     website,
@@ -37,21 +34,18 @@ const Createprofile = ({
     facebook,
     linkedin,
     youtube,
-    instagram,
+    instagram
   } = formData;
+
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
   const onSubmit = e => {
     e.preventDefault();
     createProfile(formData, history);
   };
-  useEffect(() => {
-    getCurrentProfile();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getCurrentProfile]);
-  return loading && profile === null ? (
-    <Redirect to='/dashboard' />
-  ) : (
+
+  return (
     <Fragment>
       <h1 className='large text-primary'>Create Your Profile</h1>
       <p className='lead'>
@@ -109,7 +103,7 @@ const Createprofile = ({
             onChange={e => onChange(e)}
           />
           <small className='form-text'>
-            City & state suggested (eg. New Delhi)
+            City & state suggested (eg. Boston, MA)
           </small>
         </div>
         <div className='form-group'>
@@ -121,7 +115,7 @@ const Createprofile = ({
             onChange={e => onChange(e)}
           />
           <small className='form-text'>
-            Please use comma separated values (eg. HTML,CSS,JavaScript)
+            Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)
           </small>
         </div>
         <div className='form-group'>
@@ -146,6 +140,7 @@ const Createprofile = ({
           />
           <small className='form-text'>Tell us a little about yourself</small>
         </div>
+
         <div className='my-2'>
           <button
             onClick={() => toggleSocialInputs(!displaySocialInputs)}
@@ -156,6 +151,7 @@ const Createprofile = ({
           </button>
           <span>Optional</span>
         </div>
+
         {displaySocialInputs && (
           <Fragment>
             <div className='form-group social-input'>
@@ -168,6 +164,7 @@ const Createprofile = ({
                 onChange={e => onChange(e)}
               />
             </div>
+
             <div className='form-group social-input'>
               <i className='fab fa-facebook fa-2x' />
               <input
@@ -178,6 +175,7 @@ const Createprofile = ({
                 onChange={e => onChange(e)}
               />
             </div>
+
             <div className='form-group social-input'>
               <i className='fab fa-youtube fa-2x' />
               <input
@@ -188,6 +186,7 @@ const Createprofile = ({
                 onChange={e => onChange(e)}
               />
             </div>
+
             <div className='form-group social-input'>
               <i className='fab fa-linkedin fa-2x' />
               <input
@@ -198,6 +197,7 @@ const Createprofile = ({
                 onChange={e => onChange(e)}
               />
             </div>
+
             <div className='form-group social-input'>
               <i className='fab fa-instagram fa-2x' />
               <input
@@ -210,6 +210,7 @@ const Createprofile = ({
             </div>
           </Fragment>
         )}
+
         <input type='submit' className='btn btn-primary my-1' />
         <Link className='btn btn-light my-1' to='/dashboard'>
           Go Back
@@ -218,15 +219,12 @@ const Createprofile = ({
     </Fragment>
   );
 };
-Createprofile.propTypes = {
-  createProfile: PropTypes.func.isRequired,
-  getCurrentProfile: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
+
+CreateProfile.propTypes = {
+  createProfile: PropTypes.func.isRequired
 };
-const mapStateToProps = state => ({
-  profile: state.profile,
-});
+
 export default connect(
-  mapStateToProps,
-  { createProfile, getCurrentProfile },
-)(withRouter(Createprofile));
+  null,
+  { createProfile }
+)(withRouter(CreateProfile));

@@ -1,43 +1,33 @@
-//jshint esversion: 6
-
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const ProfileSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user' //  Reference to the user schema as every profile must be associated with a user
+    ref: 'user'
   },
-
   company: {
     type: String
   },
-
   website: {
     type: String
   },
-
   location: {
-      type: String
-    },
-
+    type: String
+  },
   status: {
-        type: String,
-        required: true
-      },
-
+    type: String,
+    required: true
+  },
   skills: {
-          type: [String],
-          required: true
-        },
-
+    type: [String],
+    required: true
+  },
   bio: {
     type: String
   },
-
   githubusername: {
     type: String
   },
-
   experience: [
     {
       title: {

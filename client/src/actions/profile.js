@@ -3,13 +3,13 @@ import { setAlert } from './alert';
 
 import {
   GET_PROFILE,
+  GET_PROFILES,
   PROFILE_ERROR,
   UPDATE_PROFILE,
   CLEAR_PROFILE,
   ACCOUNT_DELETED,
-  GET_PROFILES,
   GET_REPOS
-} from './type';
+} from './types';
 
 // Get current users profile
 export const getCurrentProfile = () => async dispatch => {
@@ -28,11 +28,9 @@ export const getCurrentProfile = () => async dispatch => {
   }
 };
 
-
-// Get all users profile
+// Get all profiles
 export const getProfiles = () => async dispatch => {
-  
-  dispatch({ type: CLEAR_PROFILE});
+  dispatch({ type: CLEAR_PROFILE });
 
   try {
     const res = await axios.get('/api/profile');
@@ -49,15 +47,13 @@ export const getProfiles = () => async dispatch => {
   }
 };
 
-
 // Get profile by ID
 export const getProfileById = userId => async dispatch => {
-  
   try {
     const res = await axios.get(`/api/profile/user/${userId}`);
 
     dispatch({
-      type: GET_PROFILES,
+      type: GET_PROFILE,
       payload: res.data
     });
   } catch (err) {
@@ -68,11 +64,8 @@ export const getProfileById = userId => async dispatch => {
   }
 };
 
-// Get github repos
-
-// Get all users profile
+// Get Github repos
 export const getGithubRepos = username => async dispatch => {
-  
   try {
     const res = await axios.get(`/api/profile/github/${username}`);
 
