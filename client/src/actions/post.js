@@ -5,7 +5,9 @@ import {
     PROFILE_ERROR,
     UPDATE_LIKES,
     DELETE_POST,
-    ADD_POST
+    ADD_POST,
+    POST_ERROR,
+    GET_POST
 } from './types';
 
 // Get posts
@@ -59,7 +61,7 @@ export const removeLike = id => async dispatch => {
 
     catch (err) {
         dispatch({
-          type: PROFILE_ERROR,
+          type: POST_ERROR,
           payload: { msg: err.response.statusText, status: err.response.status }
         });
       }
@@ -85,7 +87,7 @@ export const addPost = formData => async dispatch => {
 
     catch (err) {
         dispatch({
-          type: PROFILE_ERROR,
+          type: POST_ERROR,
           payload: { msg: err.response.statusText, status: err.response.status }
         });
       }
@@ -107,8 +109,26 @@ export const deletePosts = id => async dispatch => {
 
     catch (err) {
         dispatch({
-          type: PROFILE_ERROR,
+          type: POST_ERROR,
           payload: { msg: err.response.statusText, status: err.response.status }
         });
       }
 }
+
+
+// Get post
+export const getPost = id => async dispatch => {
+    try {
+      const res = await axios.get(`/api/posts/${id}`);
+  
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      });
+    } catch (err) {
+      dispatch({
+        type: POST_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status }
+      });
+    }
+  };
