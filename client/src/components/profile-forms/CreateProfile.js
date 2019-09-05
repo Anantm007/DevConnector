@@ -61,8 +61,8 @@ const CreateProfile = ({ createProfile, history }) => {
             <option value='Junior Developer'>Junior Developer</option>
             <option value='Senior Developer'>Senior Developer</option>
             <option value='Manager'>Manager</option>
-            <option value='Student or Learning'>Student or Learning</option>
-            <option value='Instructor'>Instructor or Teacher</option>
+            <option value='Student or Learning'>Student</option>
+            <option value='Instructor'>Teacher</option>
             <option value='Intern'>Intern</option>
             <option value='Other'>Other</option>
           </select>
@@ -91,7 +91,7 @@ const CreateProfile = ({ createProfile, history }) => {
             onChange={e => onChange(e)}
           />
           <small className='form-text'>
-            Could be your own or a company website
+            Please input complete url (eg: https://abc.com)
           </small>
         </div>
         <div className='form-group'>
@@ -103,7 +103,7 @@ const CreateProfile = ({ createProfile, history }) => {
             onChange={e => onChange(e)}
           />
           <small className='form-text'>
-            City & state suggested (eg. Boston, MA)
+            City & state (eg. New Delhi)
           </small>
         </div>
         <div className='form-group'>
@@ -115,7 +115,7 @@ const CreateProfile = ({ createProfile, history }) => {
             onChange={e => onChange(e)}
           />
           <small className='form-text'>
-            Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)
+            Please use comma separated values (eg. HTML,CSS,JavaScript)
           </small>
         </div>
         <div className='form-group'>
