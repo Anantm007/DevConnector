@@ -8,6 +8,19 @@ const { check, validationResult } = require('express-validator/check');
 
 const User = require('../../models/User');
 
+const nodemailer = require("nodemailer");
+let transporter = nodemailer.createTransport({
+    service : 'gmail',
+    secure : false,
+    port : 25,
+    auth : {
+        user : config.EmailId,
+        pass : config.Password
+    },
+    tls : {
+        rejectUnauthorized : false
+    }});
+
 // @route    POST api/users
 // @desc     Register user
 // @access   Public
@@ -72,6 +85,19 @@ router.post(
         (err, token) => {
           if (err) throw err;
           res.json({ token });
+
+          let HelperOptions ={
+
+            from : config.Name + '<'+ (config.EmailId)+'>' ,
+            to : email,
+            subject : "Welcome to DevConnector",
+            text : "Hello " + name + ", \n\nWelcome to Developer Connector. Create developer Profile, share posts and get help. \nAny suggestions are always welcome. \n\nRegards, \nAnant Mathur"
+        };
+
+        transporter.sendMail(HelperOptions,(err,info)=>{
+            if(err) throw err;
+            console.log("The message was sent");
+        });
         }
       );
     } catch (err) {
