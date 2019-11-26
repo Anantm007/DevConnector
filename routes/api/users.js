@@ -3,7 +3,7 @@ const router = express.Router();
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const config = require('config');
+require('dotenv').config()
 const { check, validationResult } = require('express-validator/check');
 
 const User = require('../../models/User');
@@ -14,8 +14,8 @@ let transporter = nodemailer.createTransport({
     secure : false,
     port : 25,
     auth : {
-        user : config.EmailId,
-        pass : config.Password
+        user : process.env.EmailId,
+        pass : process.env.Password
     },
     tls : {
         rejectUnauthorized : false
@@ -80,7 +80,7 @@ router.post(
 
       jwt.sign(
         payload,
-        config.get('jwtSecret'),
+        process.env.jwtSecret,
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;
@@ -88,7 +88,7 @@ router.post(
 
           let HelperOptions ={
 
-            from : config.Name + '<'+ (config.EmailId)+'>' ,
+            from : process.env.Name + '<'+ (process.env.EmailId)+'>' ,
             to : email,
             subject : "Welcome to DevConnector",
             text : "Hello " + name + ", \n\nWelcome to Developer Connector. Create developer Profile, share posts and get help. \nAny suggestions are always welcome. \n\nRegards, \nAnant Mathur"
