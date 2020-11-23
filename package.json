@@ -4,11 +4,11 @@
   "description": "Social network for developers",
   "main": "server.js",
   "scripts": {
-    "start" : "node server",
-    "server" : "nodemon server",
-    "client" : "npm start --prefix client",
-    "dev" : "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild" : "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Anant Mathur",
   "license": "MIT",
@@ -18,7 +18,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
-    "gravatar": "^1.8.0",
+    "gravatar": "^1.8.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.1",
     "nodemailer": "^6.3.0",
