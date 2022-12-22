@@ -19,7 +19,7 @@
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
     "gravatar": "^1.8.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.5.1",
     "nodemailer": "^6.3.0",
     "request": "^2.88.0"
